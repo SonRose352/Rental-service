@@ -37,20 +37,19 @@ const Map: React.FC<MapProps> = ({ city, points, selectedPoint }) => {
             lng: point.lng,
           },
           {
-            icon: selectedPoint && point.title === selectedPoint.title ? currentIcon : defaultIcon,
+            icon: selectedPoint && selectedPoint.title === point.title ? currentIcon : defaultIcon,
           }
         ).addTo(map);
       });
 
-      // Центрируем карту на выбранной точке
+      // Центрируем карту
       if (selectedPoint) {
-        const selected = points.find(p => p.title === selectedPoint.title);
-        if (selected) {
-          map.setView([selected.lat, selected.lng], city.zoom);
-        }
+        map.setView([selectedPoint.lat, selectedPoint.lng], city.zoom);
+      } else {
+        map.setView([city.lat, city.lng], city.zoom);
       }
     }
-  }, [map, points, selectedPoint, city.zoom]);
+  }, [map, points, selectedPoint, city]);
 
   return <div style={{ height: '100%' }} ref={mapRef}></div>;
 };

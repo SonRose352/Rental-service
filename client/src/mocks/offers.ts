@@ -2,7 +2,7 @@ import { FullOffer } from "../types/offer";
 
 export const offers: FullOffer[] = [
   {
-    id: 'bbb06a0e-3f92-446d-9a68-cb64b5d38e2b',
+    id: '1',
     title: 'Wood and stone place',
     description: 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families',
     type: 'apartment',
@@ -56,7 +56,7 @@ export const offers: FullOffer[] = [
     previewImage: '/img/20.jpg'
   },
   {
-    id: 'ccc16b1f-4g83-557e-8b79-dc75b6e49f3c',
+    id: '2',
     title: 'Modern loft in city center',
     description: 'Bright and stylish apartment with panoramic views of the city',
     type: 'house',
@@ -102,7 +102,7 @@ export const offers: FullOffer[] = [
     previewImage: '/img/20.jpg'
   },
   {
-    id: 'ddd27c2g-5h94-668f-9c8a-ed86c7f50g4d',
+    id: '3',
     title: 'Cozy studio near Grand Place',
     description: 'Charming studio in the heart of Brussels, perfect for solo travelers',
     type: 'room',
@@ -147,7 +147,7 @@ export const offers: FullOffer[] = [
     previewImage: '/img/20.jpg'
   },
   {
-    id: 'eee38d3h-6i05-779g-0d9b-fe97d8g61h5e',
+    id: '4',
     title: 'Canal view apartment',
     description: 'Luxurious apartment with direct view on Amsterdam canals',
     type: 'apartment',

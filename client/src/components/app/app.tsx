@@ -11,20 +11,18 @@ import { FullOffer } from "../../types/offer";
 import { OffersList } from "../../types/offer";
 
 type AppMainPageProps = {
-    rentalOffersCount: number;
     offers: FullOffer[];
     offersList: OffersList[];
 }
 
 
-function App({rentalOffersCount, offers, offersList}: AppMainPageProps): React.JSX.Element {
+function App({offers, offersList}: AppMainPageProps): React.JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
           element={<MainPage
-            rentalOffersCount={rentalOffersCount}
             offersList={offersList}  />}
         />
         <Route
@@ -45,10 +43,10 @@ function App({rentalOffersCount, offers, offersList}: AppMainPageProps): React.J
             </PrivateRoute>
           }
         />
-        {/* <Route
+        <Route
           path={AppRoute.Offer}
           element={<OfferPage offers={offers} />}
-        /> */}
+        />
         <Route
           path="*"
           element={<PageNotFound />}

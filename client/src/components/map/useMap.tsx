@@ -24,12 +24,6 @@ function useMap(mapRef: React.RefObject<HTMLElement | null>, city: City): Leafle
       setMap(instance);
       isRenderedRef.current = true;
     }
-
-    return () => {
-      if (map) {
-        map.remove();
-      }
-    };
   }, [mapRef, city]);
 
   return map;
