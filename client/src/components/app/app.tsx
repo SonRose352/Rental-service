@@ -16,14 +16,13 @@ type AppMainPageProps = {
 }
 
 
-function App({offers, offersList}: AppMainPageProps): React.JSX.Element {
+function App({offers}: AppMainPageProps): React.JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<MainPage
-            offersList={offersList}  />}
+          element={<MainPage/>}
         />
         <Route
           path={AppRoute.Login}

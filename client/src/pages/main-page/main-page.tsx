@@ -1,19 +1,25 @@
 import { Logo } from "../../components/logo/logo";
 import { CitiesCardList } from "../../components/cities-card-list/cities-card-list";
-import { OffersList } from "../../types/offer";
+import { CitiesList } from "../../components/cities-list/cities-list";
 import Map from "../../components/map/map";
-import { useState } from "react";
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { changeCity } from '../../store/action';
+import { getOffersByCity } from '../../utils/utils';
+import { useState } from 'react';
+import { CITIES_LOCATION } from "../../const";
+import { SortOptions } from "../../components/sort-options/sort-options";
+import { sortOffersByType } from '../../utils/utils';
+import { SortOffer } from '../../types/sort';
 
-type MainPageProps = {
-  offersList: OffersList[];
-};
-
-function MainPage({ offersList }: MainPageProps): React.JSX.Element {
+function MainPage(): React.JSX.Element {
+  const dispatch = useAppDispatch();
+  const { city, offers } = useAppSelector((state) => state);
   const [selectedPointId, setSelectedPointId] = useState<string | null>(null);
-  const [activeCity, setActiveCity] = useState('Amsterdam');
+  const [activeSortType, setActiveSortType] = useState<SortOffer>("Popular");
 
-  // Фильтруем предложения по выбранному городу
-  const filteredOffers = offersList
+  // Фильтруем предложения по текущему городу
+  const filteredOffers = getOffersByCity(city.name, offers);
+  const sortedOffers = sortOffersByType(filteredOffers, activeSortType);
 
   const points = filteredOffers.map((offer) => ({
     id: offer.id,
@@ -22,25 +28,15 @@ function MainPage({ offersList }: MainPageProps): React.JSX.Element {
     lng: offer.location.longitude,
   }));
 
-  const currentCity = filteredOffers[0]?.city || {
-    name: 'Amsterdam',
-    location: {
-      latitude: 52.370216,
-      longitude: 4.895168,
-      zoom: 12
+  const handleCityChange = (newCity: string) => {
+    const cityData = CITIES_LOCATION.find(c => c.name === newCity);
+    if (cityData) {
+      dispatch(changeCity(cityData));
     }
   };
 
-  const mapCity = {
-    name: currentCity.name,
-    lat: currentCity.location.latitude,
-    lng: currentCity.location.longitude,
-    zoom: currentCity.location.zoom
-  };
-
-  const handleCityClick = (city: string) => {
-    setActiveCity(city);
-    setSelectedPointId(null);
+  const handleSortTypeChange = (newSortType: SortOffer) => {
+    setActiveSortType(newSortType);
   };
 
   return (
@@ -49,14 +45,13 @@ function MainPage({ offersList }: MainPageProps): React.JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <Logo></Logo>
+              <Logo />
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
                 <li className="header__nav-item user">
                   <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
+                    <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                     <span className="header__user-name user__name">Myemail@gmail.com</span>
                     <span className="header__favorite-count">3</span>
                   </a>
@@ -76,86 +71,23 @@ function MainPage({ offersList }: MainPageProps): React.JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a 
-                  className={`locations__item-link tabs__item ${activeCity === 'Paris' ? 'tabs__item--active' : ''}`}
-                  href="#"
-                  onClick={() => handleCityClick('Paris')}
-                >
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a 
-                  className={`locations__item-link tabs__item ${activeCity === 'Cologne' ? 'tabs__item--active' : ''}`}
-                  href="#"
-                  onClick={() => handleCityClick('Cologne')}
-                >
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a 
-                  className={`locations__item-link tabs__item ${activeCity === 'Brussels' ? 'tabs__item--active' : ''}`}
-                  href="#"
-                  onClick={() => handleCityClick('Brussels')}
-                >
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a 
-                  className={`locations__item-link tabs__item ${activeCity === 'Amsterdam' ? 'tabs__item--active' : ''}`}
-                  href="#"
-                  onClick={() => handleCityClick('Amsterdam')}
-                >
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a 
-                  className={`locations__item-link tabs__item ${activeCity === 'Hamburg' ? 'tabs__item--active' : ''}`}
-                  href="#"
-                  onClick={() => handleCityClick('Hamburg')}
-                >
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a 
-                  className={`locations__item-link tabs__item ${activeCity === 'Dusseldorf' ? 'tabs__item--active' : ''}`}
-                  href="#"
-                  onClick={() => handleCityClick('Dusseldorf')}
-                >
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
+            <CitiesList
+              selectedCity={city}
+              onCityChange={handleCityChange}
+            />
           </section>
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{filteredOffers.length} places to stay in {activeCity}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use href="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
-              <CitiesCardList 
-                offersList={filteredOffers}
+              <b className="places__found">{filteredOffers.length} places to stay in {city.name}</b>
+              <SortOptions
+                activeSorting={activeSortType}
+                onChange={handleSortTypeChange}
+              />
+              <CitiesCardList
+                offersList={sortedOffers}
                 onCardHover={(id) => setSelectedPointId(id)}
                 onCardLeave={() => setSelectedPointId(null)}
               />
@@ -163,7 +95,11 @@ function MainPage({ offersList }: MainPageProps): React.JSX.Element {
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  city={mapCity}
+                  city={{
+                    lat: city.location.latitude,
+                    lng: city.location.longitude,
+                    zoom: city.location.zoom
+                  }}
                   points={points}
                   selectedPoint={points.find(p => p.id === selectedPointId) || null}
                 />

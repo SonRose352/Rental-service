@@ -68,5 +68,12 @@ const CITIES_LOCATION : CityOffer[] = [
     },
 ];
 
-export { AppRoute, Setting, AuthorizationStatus, CITIES_LOCATION }
+const SortOffersType = {
+  Popular : 'Popular',
+  PriceToHigh : 'Price: low to high',
+  PriceToLow : 'Price: high to low',
+  TopRated : 'Top rated first',
+}
+
+export { AppRoute, Setting, AuthorizationStatus, CITIES_LOCATION, SortOffersType }
 

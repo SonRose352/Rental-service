@@ -1,25 +1,32 @@
-import { Link } from "react-router-dom";
-import { AppRoute,CITIES_LOCATION } from "../../const";
-import { useAppDispatch } from "../../hooks";
-import { changeCity } from "../../store/action";
-import { CityOffer } from "../../types/offer"
-type citiesListProps={
-    selectedCity:CityOffer|undefined;
+import { CITIES_LOCATION } from "../../const";
+import { CityOffer } from "../../types/offer";
+
+type CitiesListProps = {
+  selectedCity: CityOffer;
+  onCityChange: (cityName: string) => void;
+};
+
+function CitiesList({ selectedCity, onCityChange }: CitiesListProps) {
+  return (
+    <ul className="locations__list tabs__list">
+      {CITIES_LOCATION.map((city) => (
+        <li key={city.name} className="locations__item">
+          <a
+            className={`locations__item-link tabs__item ${
+              city.name === selectedCity.name ? 'tabs__item--active' : ''
+            }`}
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              onCityChange(city.name);
+            }}
+          >
+            <span>{city.name}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
 }
-export function CitiesList({selectedCity}:citiesListProps){
-    const dispatch = useAppDispatch();
-    return(
-        <ul className="locations__list tabs__list">
-            {CITIES_LOCATION.map((city)=>(
-                <li key={city.name} className="locations__item" onClick={()=>{
-                    dispatch(changeCity(city));
-                }}>
-                    <Link className={`${city.name===selectedCity?.name ?
-                        'tabs__item--active' : 'tabs__item--disable'} locations__item-link tabs__item`} to={AppRoute.Main}>
-                        <span>{city.name}</span>
-                    </Link>
-                </li>
-            ))}
-        </ul>
-    )
-}
+
+export { CitiesList };

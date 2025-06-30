@@ -5,8 +5,8 @@ const changeCity = createAction('offers/changeCity',(city:CityOffer)=>({
     payload:city
 }));
 
-const offerCityList=createAction('offers/offersCityList',(offers:OffersList[])=>({
-    payload:offers
+const setOffers = createAction('offers/setOffers', (offers: OffersList[]) => ({
+  payload: offers
 }));
 
-export {changeCity,offerCityList};
+export {changeCity, setOffers};

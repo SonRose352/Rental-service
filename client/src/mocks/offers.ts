@@ -4,7 +4,7 @@ export const offers: FullOffer[] = [
   {
     id: '1',
     title: 'Wood and stone place',
-    description: 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families',
+    description: 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families.',
     type: 'apartment',
     price: 370,
     images: [
@@ -18,14 +18,14 @@ export const offers: FullOffer[] = [
     city: {
       name: 'Paris',
       location: {
-        latitude: 48.85661,
-        longitude: 2.353499,
+        latitude: 48.8566,
+        longitude: 2.3522,
         zoom: 13
       }
     },
     location: {
-      latitude: 48.868610000000004,
-      longitude: 2.342499,
+      latitude: 48.8686,
+      longitude: 2.3425,
       zoom: 16
     },
     goods: [
@@ -57,9 +57,9 @@ export const offers: FullOffer[] = [
   },
   {
     id: '2',
-    title: 'Modern loft in city center',
-    description: 'Bright and stylish apartment with panoramic views of the city',
-    type: 'house',
+    title: 'Elegant studio near Eiffel Tower',
+    description: 'Stylish studio with a breathtaking view of the Eiffel Tower, perfect for couples.',
+    type: 'studio',
     price: 420,
     images: [
       '/img/20.jpg',
@@ -70,16 +70,16 @@ export const offers: FullOffer[] = [
       '/img/7.jpg'
     ],
     city: {
-      name: 'Cologne',
+      name: 'Paris',
       location: {
-        latitude: 50.93753,
-        longitude: 6.96028,
+        latitude: 48.8566,
+        longitude: 2.3522,
         zoom: 13
       }
     },
     location: {
-      latitude: 50.94123,
-      longitude: 6.95821,
+      latitude: 48.8575,
+      longitude: 2.3515,
       zoom: 16
     },
     goods: [
@@ -102,56 +102,11 @@ export const offers: FullOffer[] = [
     previewImage: '/img/20.jpg'
   },
   {
-    id: '3',
-    title: 'Cozy studio near Grand Place',
-    description: 'Charming studio in the heart of Brussels, perfect for solo travelers',
-    type: 'room',
-    price: 290,
-    images: [
-      '/img/20.jpg',
-      '/img/17.jpg',
-      '/img/16.jpg',
-      '/img/15.jpg',
-      '/img/2.jpg',
-      '/img/7.jpg'
-    ],
-    city: {
-      name: 'Brussels',
-      location: {
-        latitude: 50.85045,
-        longitude: 4.34878,
-        zoom: 13
-      }
-    },
-    location: {
-      latitude: 50.84876,
-      longitude: 4.35291,
-      zoom: 16
-    },
-    goods: [
-      'Wi-Fi',
-      'Kitchenette',
-      'Coffee machine',
-      'Iron'
-    ],
-    host: {
-      isPro: false,
-      name: 'Sophie',
-      avatarUrl: '/img/avatar-angelina.jpg'
-    },
-    isPremium: false,
-    isFavorite: true,
-    rating: 4.5,
-    bedrooms: 1,
-    maxAdults: 1,
-    previewImage: '/img/20.jpg'
-  },
-  {
-    id: '4',
-    title: 'Canal view apartment',
-    description: 'Luxurious apartment with direct view on Amsterdam canals',
+    id: '15',
+    title: 'Modern apartment near Elbphilharmonie',
+    description: 'Contemporary apartment located near the famous Elbphilharmonie, ideal for music lovers.',
     type: 'apartment',
-    price: 510,
+    price: 430,
     images: [
       '/img/20.jpg',
       '/img/17.jpg',
@@ -161,16 +116,16 @@ export const offers: FullOffer[] = [
       '/img/7.jpg'
     ],
     city: {
-      name: 'Amsterdam',
+      name: 'Hamburg',
       location: {
-        latitude: 52.370216,
-        longitude: 4.895168,
+        latitude: 53.5511,
+        longitude: 9.9937,
         zoom: 13
       }
     },
     location: {
-      latitude: 52.369543,
-      longitude: 4.896976,
+      latitude: 53.5515,
+      longitude: 9.9940,
       zoom: 16
     },
     goods: [
@@ -189,9 +144,149 @@ export const offers: FullOffer[] = [
     },
     isPremium: true,
     isFavorite: false,
-    rating: 4.8,
-    bedrooms: 3,
+    rating: 4.7,
+    bedrooms: 2,
     maxAdults: 4,
+    previewImage: '/img/20.jpg'
+  },
+  {
+    id: '16',
+    title: 'Cozy studio in St. Pauli',
+    description: 'Charming studio in the vibrant St. Pauli district, perfect for solo travelers or couples.',
+    type: 'studio',
+    price: 290,
+    images: [
+      '/img/20.jpg',
+      '/img/17.jpg',
+      '/img/16.jpg',
+      '/img/15.jpg',
+      '/img/2.jpg',
+      '/img/7.jpg'
+    ],
+    city: {
+      name: 'Hamburg',
+      location: {
+        latitude: 53.5511,
+        longitude: 9.9937,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 53.5508,
+      longitude: 9.9935,
+      zoom: 16
+    },
+    goods: [
+      'Wi-Fi',
+      'Heating',
+      'Kitchenette',
+      'Coffee machine',
+      'Iron'
+    ],
+    host: {
+      isPro: false,
+      name: 'Sophie',
+      avatarUrl: '/img/avatar-sophie.jpg'
+    },
+    isPremium: false,
+    isFavorite: true,
+    rating: 4.3,
+    bedrooms: 1,
+    maxAdults: 2,
+    previewImage: '/img/16.jpg'
+  },
+  {
+    id: '17',
+    title: 'Luxury penthouse with harbor view',
+    description: 'Stunning penthouse offering breathtaking views of the harbor, perfect for a luxurious stay.',
+    type: 'apartment',
+    price: 620,
+    images: [
+      '/img/20.jpg',
+      '/img/17.jpg',
+      '/img/16.jpg',
+      '/img/15.jpg',
+      '/img/2.jpg',
+      '/img/7.jpg'
+    ],
+    city: {
+      name: 'Hamburg',
+      location: {
+        latitude: 53.5511,
+        longitude: 9.9937,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 53.5513,
+      longitude: 9.9939,
+      zoom: 16
+    },
+    goods: [
+      'Wi-Fi',
+      'Air conditioning',
+      'Kitchen',
+      'Dishwasher',
+      'Washing machine',
+      'TV',
+      'Balcony',
+      'Hot tub'
+    ],
+    host: {
+      isPro: true,
+      name: 'Lukas',
+      avatarUrl: '/img/avatar-lukas.jpg'
+    },
+    isPremium: true,
+    isFavorite: false,
+    rating: 4.9,
+    bedrooms: 3,
+    maxAdults: 5,
+    previewImage: '/img/17.jpg'
+  },
+  {
+    id: '6',
+    title: 'Charming studio near Grand Place',
+    description: 'A cozy studio located just a few steps from the Grand Place, ideal for exploring Brussels.',
+    type: 'room',
+    price: 210,
+    images: [
+      '/img/20.jpg',
+      '/img/17.jpg',
+      '/img/16.jpg',
+      '/img/15.jpg',
+      '/img/2.jpg',
+      '/img/7.jpg'
+    ],
+    city: {
+      name: 'Brussels',
+      location: {
+        latitude: 50.8503,
+        longitude: 4.3517,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 50.8505,
+      longitude: 4.3520,
+      zoom: 16
+    },
+    goods: [
+      'Wi-Fi',
+      'Kitchenette',
+      'Coffee machine',
+      'Iron'
+    ],
+    host: {
+      isPro: false,
+      name: 'Sophie',
+      avatarUrl: '/img/avatar-sophie.jpg'
+    },
+    isPremium: false,
+    isFavorite: true,
+    rating: 4.2,
+    bedrooms: 1,
+    maxAdults: 1,
     previewImage: '/img/20.jpg'
   }
 ];
